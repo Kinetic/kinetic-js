@@ -4,6 +4,9 @@ Node.js library for using the [Kinetic open storage
 protocol](https://github.com/Kinetic/kinetic-protocol).
 This library supports protocol 3.0.7
 
+For the full documentation, visit
+[here](https://antonincoulibaly.github.io/Kinetic-js-doc/)
+
 ## Requirements
 
 This project's code is written in ES6. If you need to include it from older
