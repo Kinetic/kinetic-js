@@ -5,7 +5,7 @@ working as we add more code.
 
 * [Unit tests](#unit-tests)  to test individual functions and make sure they
  behave correctly with specific sets of arguments.
-* [Functional tests](#functional-tests) to test the compatibility between our 
+* [Functional tests](#functional-tests) to test the compatibility between our
  kinetic library with the kinetic device simulator.
 
 #### I wrote a patch and I want to check tests are passing!
@@ -43,7 +43,7 @@ let rawData = undefined;
 const k = new kinetic.NoOpPDU(123);
 
 
-// if you want a put or a get response, you need a chunk : 
+// if you want a put or a get response, you need a chunk :
 // k.setChunk(new Buffer("HI EVERYBODY"));
 
 
@@ -96,11 +96,11 @@ function writeHex(request) {
 
 requestsArr.forEach(writeHex);
 ```
-  
+
   - You can also use :
-  
-  ``` 
-  hexdump -C FILE | cut -b10-33,35-58 | sed 's/\s\+$//g;s/ /\\x/g' 
+
+  ```
+  hexdump -C FILE | cut -b10-33,35-58 | sed 's/\s\+$//g;s/ /\\x/g'
   ```
 
 ### Functions tested
@@ -121,4 +121,49 @@ requestsArr.forEach(writeHex);
      - PUT
      - GET
      - DELETE
-   
+
+## Functional tests
+
+Functional tests are located in the `tests/functional` directory.
+
+### Architecture
+
+* Kinetic Device simulator `tests/dependencies`
+  - TCP connection
+  - JAVA simulator
+  - maven is needed for the build
+    - Download : https://maven.apache.org/download.cgi
+    - Installation guide : https://maven.apache.org/install.html
+* mocha
+
+### Method
+
+Test are run by:
+* lauching the Makefile located in the tests/functional directory :
+  - make submodule_sync
+    - sync and load the dependencies (simulator package)
+  - make build_cache
+    - build the simulator package with cache rule for avoiding many downloads
+      and builds
+  - make start_simulator
+    - start the simulator
+  - make stop_simulator
+    - stop the simulator
+  - make run_test
+    - run the tests with mocha (`tests/functional/simulTest.js`)
+  - can use make for an automatic load
+
+### Functions tested
+
+* Kinetic
+  - Build (kinetic compatibility)
+    - Protobuf message
+    - Buffer sent format
+  - Parse
+    - Decode the received buffer
+    - Check Version
+    - HmacIntegrity
+      (compute an HMAC from the PDU and compare it to the one sent)
+  - Send()
+    - Check the simulator returns (SUCCESS)
+    - The simulator check the HMAC(integrity of PDU sent)
