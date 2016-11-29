@@ -1,13 +1,17 @@
 {
     "name": "kinetic-js",
     "version": "1.0.0",
-    "description": "Library for the Kinetic open storage protocol",
+    "description": "Library for the Kinetic Open Storage Protocol",
     "repository": "Kinetic/kinetic-js",
     "contributors": [
-        { "name": "Antonin Coulibaly", "email": "" },
-        { "name": "David Pineau", "email": "" },
-        { "name": "Michael Zapata", "email": "" },
-        { "name": "Adrien Vergé", "email": "" }
+        { "name": "Antonin Coulibaly",
+          "email": "antonin.coulibaly@scality.com" },
+        { "name": "David Pineau",
+          "email": "david.pineau@scality.com" },
+        { "name": "Michael Zapata",
+          "email": "michael.zapata@scality.com" },
+        { "name": "Adrien Vergé",
+          "email": "adrienverge@gmail.com" }
     ],
     "license": "Mozilla 2.0",
     "bugs": {
