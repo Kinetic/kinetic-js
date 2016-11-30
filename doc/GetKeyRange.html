@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: GetKeyRange</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: GetKeyRange</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>GetKeyRange</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="GetKeyRange"><span class="type-signature"></span>new GetKeyRange<span class="signature">(sequence, connectionID, clusterVersion, startKeyArg, endKeyArg, maxReturned, optionsA)</span><span class="type-signature"> &rarr; {Kinetic}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sequence</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">monotonically increasing number for each
+                               request in a TCP connection</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connectionID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the connection ID received from the
+                               InitPDU</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clusterVersion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The version number of this cluster
+                                 definition</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startKeyArg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the beginning of the requested range.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>endKeyArg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the end of the requested range.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxReturned</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The maximum number of keys returned</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>optionsA</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">optional :
+       {boolean} [options.startkeyinclusive = false] - indicates that the
+                                                       start key should
+                                                       be included
+       {boolean} [options.endkeyinclusive = false] - indicates that the
+                                                     end key should be
+                                                     included
+       {boolean} [options.reverse = false] - If true, the key range will
+                                             be returned in reverse order</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="kinetic.js.html">kinetic.js</a>, <a href="kinetic.js.html#line1383">line 1383</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - message structure following the kinetic protocol
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Kinetic</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeletePDU.html">DeletePDU</a></li><li><a href="DeleteResponsePDU.html">DeleteResponsePDU</a></li><li><a href="EndBatchPDU.html">EndBatchPDU</a></li><li><a href="EndBatchResponsePDU.html">EndBatchResponsePDU</a></li><li><a href="FirmwareDownloadPDU.html">FirmwareDownloadPDU</a></li><li><a href="FlushPDU.html">FlushPDU</a></li><li><a href="FlushResponsePDU.html">FlushResponsePDU</a></li><li><a href="GetKeyRange.html">GetKeyRange</a></li><li><a href="GetKeyRangeResponsePDU.html">GetKeyRangeResponsePDU</a></li><li><a href="GetLogPDU.html">GetLogPDU</a></li><li><a href="GetLogResponsePDU.html">GetLogResponsePDU</a></li><li><a href="GetNextPDU.html">GetNextPDU</a></li><li><a href="GetNextReponsePDU.html">GetNextReponsePDU</a></li><li><a href="GetPDU.html">GetPDU</a></li><li><a href="GetPreviousPDU.html">GetPreviousPDU</a></li><li><a href="GetPreviousResponsePDU.html">GetPreviousResponsePDU</a></li><li><a href="GetResponsePDU.html">GetResponsePDU</a></li><li><a href="GetVersionPDU.html">GetVersionPDU</a></li><li><a href="GetVersionResponsePDU.html">GetVersionResponsePDU</a></li><li><a href="InitPDU.html">InitPDU</a></li><li><a href="NoOpPDU.html">NoOpPDU</a></li><li><a href="NoOpResponsePDU.html">NoOpResponsePDU</a></li><li><a href="PDU.html">PDU</a></li><li><a href="PutPDU.html">PutPDU</a></li><li><a href="PutResponsePDU.html">PutResponsePDU</a></li><li><a href="SetClusterVersionPDU.html">SetClusterVersionPDU</a></li><li><a href="SetupResponsePDU.html">SetupResponsePDU</a></li><li><a href="StartBatchPDU.html">StartBatchPDU</a></li><li><a href="StartBatchResponsePDU.html">StartBatchResponsePDU</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getErrorName">getErrorName</a></li><li><a href="global.html#getKeyByValue">getKeyByValue</a></li><li><a href="global.html#getLogType">getLogType</a></li><li><a href="global.html#getOpName">getOpName</a></li><li><a href="global.html#getVersion">getVersion</a></li><li><a href="global.html#propError">propError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Nov 24 2016 15:15:53 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
