@@ -5,7 +5,7 @@ protocol](https://github.com/Kinetic/kinetic-protocol).
 This library supports protocol 3.0.7
 
 For the full documentation, visit
-[here](https://antonincoulibaly.github.io/Kinetic-js-doc/)
+[here](https://kinetic.github.io/kinetic-js/)
 
 ## Requirements
 
