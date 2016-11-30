@@ -34,7 +34,7 @@
         "mocha": "^2.3.3"
     },
     "scripts": {
-        "lint": "eslint $(git ls-files '*.js')",
+        "lint": "eslint $(git ls-files './lib/*.js' './tests/*/*.js')",
         "test": "mocha -r babel/register tests/unit",
         "tests_functional": "make -C tests/functional"
     },
