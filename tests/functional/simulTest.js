@@ -1,9 +1,6 @@
 import assert from 'assert';
 import crypto from 'crypto';
 import net from 'net';
-import util from 'util';
-
-import winston from 'winston';
 
 import kinetic from '../../index';
 
@@ -20,9 +17,6 @@ let connectionID = 0;
 let clusterVersion = 0;
 const newVersion = Buffer.from('1');
 
-const logger = new (winston.Logger)({
-    transports: [new (winston.transports.Console)({ level: 'error' })]
-});
 
 const requestsArr = [
     ['put', 'PUT_RESPONSE'],
@@ -130,7 +124,6 @@ function checkTest(request, requestResponse, options, optRes, done) {
         } catch (e) {
             return done(e);
         }
-        logger.info(util.inspect(pdu, {showHidden: false, depth: null}));
 
         if (pdu.getMessageType() === null ||
             kinetic.getOpName(pdu.getMessageType()) !== requestResponse) {
@@ -138,9 +131,6 @@ function checkTest(request, requestResponse, options, optRes, done) {
             clusterVersion = pdu.getClusterVersion();
             requestsLauncher(request, client, options, done);
         } else {
-            logger.info(util.inspect(pdu.getProtobuf(),
-                {showHidden: false, depth: null}));
-
             assert.deepEqual(pdu.getStatusCode(),
                 kinetic.errors.SUCCESS);
             assert.deepEqual(
