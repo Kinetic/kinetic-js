@@ -2,15 +2,12 @@ const assert = require('assert');
 const crypto = require('crypto');
 const util = require('util');
 
-const winston = require('winston');
+const mlog = require('mocha-logger');
 
 const kinetic = require('../../index');
 
 const connectionID = 0;
 const clusterVersion = 0;
-const logger = new (winston.Logger)({
-    transports: [new (winston.transports.Console)({ level: 'error' })]
-});
 
 describe('kinetic.PDU decoding()', () => {
     function checkDecoding(data, checkFunction, done) {
@@ -537,8 +534,8 @@ describe('kinetic.PDU decoding()', () => {
 
         try {
             const pdu = new kinetic.PDU(rawData);
-            logger.info(util.inspect(pdu.getProtobuf(),
-                {showHidden: false, depth: null}));
+            mlog.error('did not detect invalid version',
+                       util.inspect(pdu, {showHidden: false, depth: null}));
 
             done(new Error('Bad error throwing in _parse/constructor()'));
         } catch (e) {
@@ -555,7 +552,9 @@ describe('kinetic.PDU decoding()', () => {
 
         try {
             const pdu = new kinetic.PDU(rawData);
-            pdu;
+            mlog.error('did not detect PDU with truncated header',
+                       util.inspect(pdu, {showHidden: false, depth: null}));
+
             done(new Error("No error thrown"));
         } catch (e) {
             if (e.badLength)
@@ -574,7 +573,9 @@ describe('kinetic.PDU decoding()', () => {
 
         try {
             const pdu = new kinetic.PDU(rawData);
-            pdu;
+            mlog.error('did not detect PDU with truncated message',
+                       util.inspect(pdu, {showHidden: false, depth: null}));
+
             done(new Error("No error thrown"));
         } catch (e) {
             if (e.badLength)
@@ -593,8 +594,8 @@ describe('kinetic.PDU decoding()', () => {
 
         try {
             const pdu = new kinetic.PDU(rawData);
-            logger.info(util.inspect(pdu.getProtobuf(),
-                {showHidden: false, depth: null}));
+            mlog.error('did not detect PDU with bad HMAC',
+                       util.inspect(pdu, {showHidden: false, depth: null}));
 
             done(new Error('Bad error throwing in _parse/constructor()'));
         } catch (e) {
