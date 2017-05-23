@@ -851,7 +851,7 @@ describe('kinetic.PDU encoding()', () => {
 
         const pdu = new kinetic.GetResponsePDU(
                 1, 1, Buffer.alloc(0), Buffer.from('qwer', 'utf8'),
-            chunk.length, Buffer.from('1', 'utf8'), tag);
+            chunk.length, Buffer.from('1', 'utf8'), { tag });
 
         const result = Buffer.concat([pdu.read(), chunk]);
 
