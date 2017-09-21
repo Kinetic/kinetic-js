@@ -49,7 +49,6 @@ const requestsArr = [
 
 function requestsLauncher(request, client, optionsA) {
     let pdu;
-    let tag;
 
     const options = optionsA || {};
 
@@ -58,11 +57,11 @@ function requestsLauncher(request, client, optionsA) {
         pdu = new kinetic.NoOpPDU(sequence, connectionID, clusterVersion);
         break;
     case 'put':
-        tag = crypto
+        options.tag = crypto
             .createHmac('sha1', 'asdfasdf').update(chunk).digest();
         pdu = new kinetic.PutPDU(
             sequence, connectionID, clusterVersion, options.key || key,
-            chunk.length, tag, options);
+            chunk.length,  options);
         break;
     case 'get':
         pdu = new kinetic.GetPDU(

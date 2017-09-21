@@ -701,14 +701,13 @@ describe('kinetic.PDU encoding()', () => {
         const options = {
             dbVersion: Buffer.from('2', 'utf8'),
             newVersion: Buffer.from('3', 'utf8'),
+            tag: crypto
+                  .createHmac('sha1', 'asdfasdf').update(chunk).digest(),
         };
-
-        const tag = crypto
-                  .createHmac('sha1', 'asdfasdf').update(chunk).digest();
 
         const k = new kinetic.PutPDU(
             1, connectionID, clusterVersion,
-            'string', chunk.length, tag, options);
+            'string', chunk.length, options);
 
         const result = Buffer.concat([k.read(), chunk]);
 
@@ -731,14 +730,13 @@ describe('kinetic.PDU encoding()', () => {
             dbVersion: Buffer.from('2', 'utf8'),
             newVersion: Buffer.from('3', 'utf8'),
             force: true,
+            tag: crypto
+                  .createHmac('sha1', 'asdfasdf').update(chunk).digest(),
         };
-
-        const tag = crypto
-                  .createHmac('sha1', 'asdfasdf').update(chunk).digest();
 
         const k = new kinetic.PutPDU(
             1, connectionID, clusterVersion,
-            'string', chunk.length, tag, options);
+            'string', chunk.length, options);
 
         const result = Buffer.concat([k.read(), chunk]);
 
@@ -761,14 +759,13 @@ describe('kinetic.PDU encoding()', () => {
             dbVersion: Buffer.from('2', 'utf8'),
             newVersion: Buffer.from('3', 'utf8'),
             force: false,
+            tag: crypto
+                  .createHmac('sha1', 'asdfasdf').update(chunk).digest(),
         };
-
-        const tag = crypto
-                  .createHmac('sha1', 'asdfasdf').update(chunk).digest();
 
         const k = new kinetic.PutPDU(
             1, connectionID, clusterVersion,
-            'string', chunk.length, tag, options);
+            'string', chunk.length, options);
 
         const result = Buffer.concat([k.read(), chunk]);
 
@@ -854,7 +851,7 @@ describe('kinetic.PDU encoding()', () => {
 
         const pdu = new kinetic.GetResponsePDU(
                 1, 1, Buffer.alloc(0), Buffer.from('qwer', 'utf8'),
-            chunk.length, Buffer.from('1', 'utf8'), tag);
+            chunk.length, Buffer.from('1', 'utf8'), { tag });
 
         const result = Buffer.concat([pdu.read(), chunk]);
 
@@ -1190,9 +1187,10 @@ describe('kinetic.PutPDU()', () => {
             const tag = crypto
                   .createHmac('sha1', 'asdfasdf').update('HelloWorld').digest();
             const k = new kinetic.PutPDU(
-                1, connectionID, clusterVersion, "string", 12, tag,
+                1, connectionID, clusterVersion, "string", 12,
                 { dbVersion: { a: 1 },
                   newVersion: Buffer.from('3', 'utf8'),
+                  tag,
                 });
             k;
             done(new Error("constructor accepted object-typed key"));
@@ -1210,7 +1208,7 @@ describe('kinetic.PutPDU()', () => {
                   .createHmac('sha1', 'asdfasdf').update('HelloWorld').digest();
             const k = new kinetic.PutPDU(
                 1, connectionID, clusterVersion,
-                "string", 12, tag, { newVersion: 346 });
+                "string", 12, { newVersion: 346, tag });
             k;
             done();
         } catch (e) {
@@ -1223,9 +1221,10 @@ describe('kinetic.PutPDU()', () => {
             const tag = crypto
                   .createHmac('sha1', 'asdfasdf').update('HelloWorld').digest();
             const k = new kinetic.PutPDU(
-                1, connectionID, clusterVersion, 'string', 12, tag,
+                1, connectionID, clusterVersion, 'string', 12,
                 { dbVersion: Buffer.from('2', 'utf8'),
-                  newVersion: { s: 'abc' }
+                  newVersion: { s: 'abc' },
+                  tag,
                 });
             k;
             done(new Error("constructor accepted string-typed key"));
